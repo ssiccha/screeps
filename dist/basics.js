@@ -48,5 +48,6 @@ var upgrade = function(creep) {
 module.exports = {
     deliver: deliver,
     build: build,
-    harvest: harvest
+    harvest: harvest,
+    upgrade: upgrade
 }
