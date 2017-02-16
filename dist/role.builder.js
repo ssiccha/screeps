@@ -1,4 +1,4 @@
-basics = require('basics');
+var basics = require('basics');
 
 var roleBuilder = {
 

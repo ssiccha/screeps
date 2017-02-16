@@ -1,4 +1,4 @@
-basics = require('basics');
+var basics = require('basics');
 
 var roleHarvester = {
 
@@ -8,8 +8,11 @@ run: function(creep) {
     var delivering = creep.memory.delivering;
     if(delivering && creep.carry.energy == 0) {
         creep.memory.delivering = false;
-        delivering = false;
         creep.say('🔄 harvest');
+    }
+    if ( !delivering && creep.carry.energy == creep.carryCapacity ) {
+        creep.memory.delivering = true;
+        creep.say('deliver');
     }
     if(!delivering) {
         basics.harvest(creep);
