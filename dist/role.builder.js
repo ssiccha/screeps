@@ -1,8 +1,7 @@
 var basics = require('basics');
 
 var roleBuilder = {
-
-    /** @param {Creep} creep **/
+    // @param {Creep} creep
     run: function(creep) {
         if(creep.memory.building && creep.carry.energy == 0) {
         creep.memory.building = false;
@@ -15,10 +14,11 @@ var roleBuilder = {
         }
 
         if(creep.memory.building) {
-            basics.build(creep);
+            return basics.build(creep);
         }
         else {
             basics.harvest(creep);
+            return null;
         }
     }
 };

@@ -34,6 +34,9 @@ var build = function(creep) {
             creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
         }
     }
+    else {
+        return "no_targets";
+    }
 }
 
 var upgrade = function(creep) {
