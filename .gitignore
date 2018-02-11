@@ -1,1 +1,3 @@
 node_modules/
+# File used by screeps itself
+.sync
