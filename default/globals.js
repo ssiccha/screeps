@@ -21,15 +21,23 @@ var update = function( STATS ) {
         );
     }
 
-    STATS.TO_PRODUCE = _.map(
+    // Determine which role to produce next
+    var PRODUCE_COUNTS = STATS.PRODUCE_COUNTS;
+    PRODUCE_COUNTS = _.map(
         STATS.ROLES,
         (x) => ({
             role: x,
             count: STATS.ROLES_MINIMA[x] - STATS.COUNT_CREEPS_BY_ROLES[x]
         })
     );
-    // descending order
-    STATS.TO_PRODUCE = _.sortBy( STATS.TO_PRODUCE, (x) => -1 * x.count );
+    // Produce the "most needed" first, sort in descending order
+    PRODUCE_COUNTS = _.sortBy(PRODUCE_COUNTS, (x) => -1 * x.count);
+    if(PRODUCE_COUNTS[0].count > 0) {
+        STATS.PRODUCE = PRODUCE_COUNTS[0].role;
+    }
+    else {
+        STATS.PRODUCE = null;
+    }
 }
 
 module.exports = {

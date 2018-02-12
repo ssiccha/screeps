@@ -8,7 +8,8 @@ var STATS = {
     ROLES: [ 'harvester', 'builder', 'upgrader' ],
     CREEPS_BY_ROLES: {},
     COUNT_CREEPS_BY_ROLES: {},
-    TO_PRODUCE: []
+    PRODUCE: null,
+    PRODUCE_COUNTS: []
 };
 
 module.exports.loop = function () {
@@ -22,7 +23,7 @@ module.exports.loop = function () {
     towers.run();
 
     // Produce creeps if minima are not met
-    roles.autoSpawn( STATS.TO_PRODUCE );
+    roles.spawnWorker(STATS.PRODUCE);
 
     // Perform roles
     roles.runCreeps();
