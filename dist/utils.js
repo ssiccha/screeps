@@ -4,7 +4,7 @@ var specifyBody = function( type, energy ) {
         if ( energy < 400 ) {
             return [ WORK, CARRY, MOVE, MOVE ];
         }
-        else if ( energy = 400 ){
+        else if ( energy >= 400 ){
             return [ WORK, WORK, CARRY, CARRY, MOVE, MOVE ];
         }
     }

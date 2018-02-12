@@ -22,24 +22,23 @@ var runCreeps = function() {
     }
 }
 
-var autoSpawn = function( TO_PRODUCE ) {
-    // Produce creeps if minima are not met
-    // TODO how much energy available?
-    var body = utils.specifyBody( 'worker', 150 );
-    for (var name in Game.spawns) {
-        var spawn = Game.spawns[name];
-        if ( TO_PRODUCE[0].count > 0 && spawn.canCreateCreep(body) == OK ) {
-            spawn.createCreep(
-                body,
-                null,
-                { role: TO_PRODUCE[0].role }
-            );
-            console.log( name, " spawning: ", TO_PRODUCE[0].role );
-        }
+var spawnWorker = function(spawn, role, energy = undefined) {
+    if(energy == undefined) {
+        energy = spawn.room.energyCapacityAvailable;
+    }
+    var body = utils.specifyBody( 'worker', energy );
+    if (role != null && spawn.spawnCreep(body, null, {dryRun: true})) {
+        spawn.spawnCreep(
+            body,
+            null,
+            { memory: { role: role } }
+        );
+        console.log(spawn.name, "spawning:", role, "using", energy, "energy");
+        return;
     }
 }
 
 module.exports = {
-    autoSpawn: autoSpawn,
+    spawnWorker: spawnWorker,
     runCreeps: runCreeps
 };
