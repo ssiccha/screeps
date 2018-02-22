@@ -27,13 +27,13 @@ var spawnWorker = function(spawn, role, energy = undefined) {
         energy = spawn.room.energyCapacityAvailable;
     }
     var body = utils.specifyBody( 'worker', energy );
-    if (role != null && spawn.spawnCreep(body, null, {dryRun: true})) {
-        spawn.spawnCreep(
+    if (role != null && spawn.spawnCreep(body, role + Game.time, {dryRun: true}) == 0) {
+        res = spawn.spawnCreep(
             body,
-            null,
+            role + Game.time,
             { memory: { role: role } }
         );
-        console.log(spawn.name, "spawning:", role, "using", energy, "energy");
+        console.log(res, spawn.name, "spawning:", role, "with", body.length, "body parts");
         return;
     }
 }

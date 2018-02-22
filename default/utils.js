@@ -8,6 +8,7 @@ var specifyBody = function( type, energy ) {
             return [ WORK, WORK, CARRY, CARRY, MOVE, MOVE ];
         }
     }
+    console.log("utils.specifyBody: failed");
     return [];
 }
 

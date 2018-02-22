@@ -23,7 +23,7 @@ module.exports.loop = function () {
     towers.run();
 
     // Produce creeps if minima are not met
-    roles.spawnWorker(STATS.PRODUCE);
+    roles.spawnWorker(Game.spawns['MainSpawn'], STATS.PRODUCE);
 
     // Perform roles
     roles.runCreeps();
